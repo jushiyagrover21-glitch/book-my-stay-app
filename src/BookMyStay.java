@@ -1,32 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Service
+ * BookingHistory
  *
- * Represents an optional add-on service for a reservation.
- * Each service has a name and an associated cost.
+ * Maintains a chronological record of all confirmed reservations.
+ * Uses a List to preserve insertion order for reporting and audits.
+ * Core booking and inventory logic remain unaffected.
  *
  * Author: Jushi
- * Version: 7.0
+ * Version: 8.0
  */
 
-public class Service {
+public class BookingHistory {
 
-    private String name;
-    private double cost;
+    private List<Reservation> confirmedBookings;
 
-    public Service(String name, double cost) {
-        this.name = name;
-        this.cost = cost;
+    public BookingHistory() {
+        confirmedBookings = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Add confirmed reservation to history
+     */
+    public void addReservation(Reservation reservation) {
+        confirmedBookings.add(reservation);
+        System.out.println("Reservation added to history: " + reservation.getGuestName() +
+                " (" + reservation.getRoomType() + ")");
     }
 
-    public double getCost() {
-        return cost;
+    /**
+     * Retrieve all reservations (read-only)
+     */
+    public List<Reservation> getAllReservations() {
+        return new ArrayList<>(confirmedBookings); // defensive copy
     }
 
-    public void displayService() {
-        System.out.println("- " + name + " ($" + cost + ")");
+    /**
+     * Get total number of confirmed reservations
+     */
+    public int getTotalReservations() {
+        return confirmedBookings.size();
     }
 }
