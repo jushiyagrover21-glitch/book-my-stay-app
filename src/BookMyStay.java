@@ -1,53 +1,33 @@
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * RoomInventory
+ * Reservation
  *
- * Manages room availability using a centralized HashMap.
- * This class acts as the single source of truth for room counts.
+ * Represents a guest booking request for a specific room type.
+ * This class only stores request information and does not
+ * interact with inventory or allocation logic.
  *
  * @author Jushi
- * @version 3.0
+ * @version 5.0
  */
-public class RoomInventory {
 
-    private Map<String, Integer> inventory;
+public class Reservation {
 
-    /**
-     * Constructor initializes room inventory.
-     */
-    public RoomInventory() {
-        inventory = new HashMap<>();
+    private String guestName;
+    private String roomType;
 
-        // Initial room availability
-        inventory.put("Single Room", 10);
-        inventory.put("Double Room", 5);
-        inventory.put("Suite Room", 2);
+    public Reservation(String guestName, String roomType) {
+        this.guestName = guestName;
+        this.roomType = roomType;
     }
 
-    /**
-     * Retrieve availability for a specific room type.
-     */
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
+    public String getGuestName() {
+        return guestName;
     }
 
-    /**
-     * Update availability for a specific room type.
-     */
-    public void updateAvailability(String roomType, int count) {
-        inventory.put(roomType, count);
+    public String getRoomType() {
+        return roomType;
     }
 
-    /**
-     * Display all inventory information.
-     */
-    public void displayInventory() {
-        System.out.println("Current Room Inventory:");
-
-        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue() + " rooms available");
-        }
+    public void displayReservation() {
+        System.out.println("Guest: " + guestName + " | Requested Room: " + roomType);
     }
 }
