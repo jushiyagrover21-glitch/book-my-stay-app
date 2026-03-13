@@ -1,33 +1,32 @@
 /**
- * Reservation
+ * Service
  *
- * Represents a guest booking request for a specific room type.
- * This class only stores request information and does not
- * interact with inventory or allocation logic.
+ * Represents an optional add-on service for a reservation.
+ * Each service has a name and an associated cost.
  *
- * @author Jushi
- * @version 5.0
+ * Author: Jushi
+ * Version: 7.0
  */
 
-public class Reservation {
+public class Service {
 
-    private String guestName;
-    private String roomType;
+    private String name;
+    private double cost;
 
-    public Reservation(String guestName, String roomType) {
-        this.guestName = guestName;
-        this.roomType = roomType;
+    public Service(String name, double cost) {
+        this.name = name;
+        this.cost = cost;
     }
 
-    public String getGuestName() {
-        return guestName;
+    public String getName() {
+        return name;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public double getCost() {
+        return cost;
     }
 
-    public void displayReservation() {
-        System.out.println("Guest: " + guestName + " | Requested Room: " + roomType);
+    public void displayService() {
+        System.out.println("- " + name + " ($" + cost + ")");
     }
 }
